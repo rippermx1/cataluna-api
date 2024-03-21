@@ -141,7 +141,8 @@ class Calendar(FirebaseDatabase):
                 self.HOURS).stream()
             hours = []
             for doc in docs:
-                hours.append(doc.to_dict())
+                if doc.to_dict()['label'] not in ['13:00 PM', '14:00 PM']:
+                    hours.append(doc.to_dict())
             return hours
         except Exception as e:
             print(e)
